@@ -7,16 +7,19 @@ import pandas as pd
 # -----------------------------
 def get_connection():
     return mysql.connector.connect(
-        host=st.secrets["172.16.17.109"]["host"],
-        user=st.secrets["PRADYUMN"]["user"],
-        password=st.secrets["12345"]["password"],
-        database=st.secrets["depot-admin-panel"]["database"]
+        host=st.secrets["mysql"]["host"],
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"]
     )
 
 # -----------------------------
 # Fetch All Depot Records
 # -----------------------------
 def get_all_depots():
+    conn = None
+    cursor = None
+    df = pd.DataFrame()
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -25,16 +28,19 @@ def get_all_depots():
         df = pd.DataFrame(records)
     except mysql.connector.Error as err:
         st.error(f"❌ Database error: {err}")
-        df = pd.DataFrame()
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
     return df
 
 # -----------------------------
 # Insert or Update Depot Record
 # -----------------------------
 def add_or_update_depot(name, schedules, services, km, category):
+    conn = None
+    cursor = None
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -51,8 +57,10 @@ def add_or_update_depot(name, schedules, services, km, category):
     except mysql.connector.Error as err:
         st.error(f"❌ Failed to save data: {err}")
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 # -----------------------------
 # Streamlit UI
