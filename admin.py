@@ -4,11 +4,12 @@ import pandas as pd
 
 def get_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="12345",
-        database="DAILY_SCHEDULE_AND_DRIVER_DATA"
+        host=st.secrets["mysql"]["localhost"],
+        user=st.secrets["mysql"]["root"],
+        password=st.secrets["mysql"]["12345"],
+        database=st.secrets["mysql"]["depot-admin-panel"]
     )
+
 
 def get_all_depots():
     conn = get_connection()
