@@ -3,5 +3,5 @@ pandas
 mysql-connector-python
 altair
 plotly
-st-aggrid
+streamlit-aggrid
 
