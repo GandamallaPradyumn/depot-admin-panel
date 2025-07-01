@@ -7,10 +7,10 @@ import pandas as pd
 # -----------------------------
 def get_connection():
     return mysql.connector.connect(
-        host=st.secrets["mysql"]["host"],
-        user=st.secrets["mysql"]["user"],
-        password=st.secrets["mysql"]["password"],
-        database=st.secrets["mysql"]["database"]
+        host=st.secrets["172.16.17.109"]["host"],
+        user=st.secrets["PRADYUMN"]["user"],
+        password=st.secrets["12345"]["password"],
+        database=st.secrets["depot-admin-panel"]["database"]
     )
 
 # -----------------------------
