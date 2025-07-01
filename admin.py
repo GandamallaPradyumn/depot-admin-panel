@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_connection():
     return mysql.connector.connect(
-        host=st.secrets["mysql"]["PRADYUMN"],
+         host = "PRADYUMN",
         user=st.secrets["mysql"]["root"],
         password=st.secrets["mysql"]["12345"],
         database=st.secrets["mysql"]["depot-admin-panel"]
