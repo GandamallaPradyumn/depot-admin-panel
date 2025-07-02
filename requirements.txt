@@ -1,7 +1,0 @@
-streamlit
-pandas
-mysql-connector-python
-altair
-plotly
-streamlit-aggrid
-
